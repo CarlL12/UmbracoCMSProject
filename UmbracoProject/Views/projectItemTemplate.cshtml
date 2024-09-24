@@ -1,0 +1,103 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Name ?? null;
+
+    var addSideBar = Model.Value<bool>("addSidebar");
+    var addInfoSection = Model.Value<bool>("addInfoSection");
+
+    var image = Model.Value<IPublishedContent>("thumbnailImage")?.Url();
+    var dateCreated = Model?.Value<string>("dateCreated") ?? "";
+
+    var selection = Umbraco.Content(Guid.Parse("f85b267a-8604-4ae6-a89c-4bc958e0d991"))
+    .ChildrenOfType("projectItemTemplate")
+    .Where(x => x.IsVisible());   
+
+}
+
+@if(!string.IsNullOrEmpty(ViewBag.Title))
+{
+    @await Html.PartialAsync("partials/static/pagetitle.cshtml")
+}
+
+<section class="project-details">
+    <div class="container">
+        <div class="project-detail">
+
+            <div class="box-with-text">
+                <p class="note1"><i class="fa-regular fa-calendar-days"></i>@dateCreated</p>
+
+            </div>
+
+            @Model.Value("pageContent")
+
+            <div class="tags">
+                <h6>Tags :</h6>
+                <div class="tag-box">
+                    <a class="tag">Consulting</a>
+                    <a class="tag">Onatrix</a>
+                    <a class="tag">Business</a>
+                </div>
+            </div>
+        </div>
+        
+        @if(addSideBar) 
+        {
+            <div class="recent-projects">
+
+                <div class="projects">
+
+                    <h6>Recent projects</h6>
+
+                    @foreach(var item in selection) 
+                    {
+
+                        var thumbNailImage = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                        var preamble = item?.Value<string>("preamble") ?? "";
+                        var dateCreatedSmall = item?.Value<string>("dateCreated") ?? "";
+
+                        <a class="projectSidebar" href="@item.Url()">
+                            <img src="@thumbNailImage" alt="">
+                            <div class="text">
+                                <p class="mini-title">@item.Name()</p>
+                                <p class="note1"><i class="fa-regular fa-calendar-days"></i>@dateCreatedSmall</p>
+                            </div>
+                        </a>
+                    }
+
+                </div>
+
+                <div class="tags-support">
+                    <div class="tags">
+                        <h6>Tags</h6>
+                        <div class="tag-box">
+                            <a class="tag">Report</a>
+                            <a class="tag">Busines plans</a>
+                            <a class="tag">Insights</a>
+                            <a class="tag">Business</a>
+                            <a class="tag">App</a>
+                            <a class="tag">Project</a>
+                            <a class="tag">Finance</a>
+                            <a class="tag">Pricing</a>
+                        </div>
+                    </div>
+
+                    <form class="how-can-we-help">
+                        <h5>How can we help you?</h5>
+                        <p>online support 24/7, we are here to help you</p>
+                        <div class="input">
+                            <input type="email" placeholder="E-mail address">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+</section>

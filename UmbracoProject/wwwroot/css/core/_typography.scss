@@ -1,0 +1,67 @@
+p {
+    font-size: 16px;
+    font-weight: 400;
+    color: $bodytext;
+    margin: 0;
+}
+
+h1 {
+    font-size: 70px;
+    font-weight: 700;
+    color: $main;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: $main;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 700;
+    color: $main;
+}
+
+h4 {
+    font-size: 25px;
+    font-weight: 700;
+    color: $main;
+}
+
+h5 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $main;
+}
+
+h6 {
+    font-size: 18px;
+    font-weight: 700;
+    color: $main;
+}
+
+.note1 {
+    font-size: 13px;
+    font-weight: 400;
+    color: $main;
+}
+
+.note2 {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 700;
+    color: $main;
+    color: $subcolor3;
+}
+
+.quote {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: $main;
+}

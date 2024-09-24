@@ -1,0 +1,80 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+
+@{
+
+    var bigSize = (Model!.Content.Value<bool>("bigSize"));
+    var smallSize = (Model!.Content.Value<bool>("smallSize"));
+
+
+    bool.TryParse(ViewData["error_name"]?.ToString()!, out bool error_name);
+
+    bool.TryParse(ViewData["error_email"]?.ToString()!, out bool error_email);
+
+
+}
+
+@using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+{
+    @if (smallSize)
+    {
+        <div class="smallSize">
+            <div class="heading">
+                <h3>Request a call back</h3>
+            </div>
+            <div class="form-box">
+                <p>Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat</p>
+                <input  name="name" placeholder="Name" type="text" class="@((error_name) ? "form-invalid-input" : null)" value="@ViewData["name"]">
+                <input  name="email" placeholder="Email address" type="email" class="@((error_email) ? "form-invalid-input" : null)" value="@ViewData["email"]">
+                <input  name="phone" placeholder="Phone" type="text">
+                <select>
+                    <option>Financial consulting</option>
+                </select>
+                <button class="btn-light" type="submit">Submit</button>
+                @if (ViewData["success"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        Message sent!
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    @if (bigSize)
+    {
+        <div class="bigSize">
+            <div class="text">
+                <p class="label">REQUEST A CALL BACK</p>
+                <h2>Let us know about your next project</h2>
+
+                <p class="italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur, ligula semper sagittis lobortis, eros metus efficitur purus</p>
+            </div>
+
+            <div class="inputs">
+
+                <input name="name" placeholder="Name" type="text" class="@((error_name) ? "form-invalid-input" : null)" value="@ViewData["name"]">
+                <input name="phone" type="tel" placeholder="Phone">
+                <input name="email" placeholder="Email address" type="email" class="@((error_email) ? "form-invalid-input" : null)" value="@ViewData["email"]">
+                <select>
+                    <option>Financial consulting</option>
+                </select>
+
+            </div>
+
+            <button class="btn-dark">Submit</button>
+
+            @if (ViewData["success"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    Message sent!
+                </div>
+            }
+        </div>
+    }
+}
+
+
+

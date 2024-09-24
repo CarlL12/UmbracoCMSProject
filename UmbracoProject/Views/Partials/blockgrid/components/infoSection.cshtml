@@ -1,0 +1,52 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var officePhoneNumber = settings?.Value<string>("officePhoneNumber") ?? "";
+    var officeEmailAddress = settings?.Value<string>("officeEmailAddress") ?? "";
+
+    var backgroundImage1 = settings?.Value<IPublishedContent>("backgroundImage1")?.Url() ?? null;
+    var backgroundImage2 = settings?.Value<IPublishedContent>("backgroundImage2")?.Url() ?? null;
+}
+
+
+<section class="next-project">
+    <div class="container">
+
+        <div class="background-image">
+            <img class="dots-rectangle" src="@backgroundImage1" alt="">
+            <img class="profile" src="@backgroundImage2" alt="">
+        </div>
+
+        <div class="text">
+            <h2>Let us know about your next project</h2>
+
+                <div class="info-box">
+                    <div class="textinfo">
+                        <i class="fa-solid fa-location-pin"></i>
+                        <h6>Office location</h6>
+                    </div>
+                    <p>@officeLocation</p>
+                </div>
+                <div class="info-box">
+                    <div class="textinfo">
+                        <i class="fa-solid fa-phone"></i>
+                        <h6>Phone number</h6>
+                    </div>
+                    <p>@officePhoneNumber</p>
+                </div>
+                <div class="info-box">
+                    <div class="textinfo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h6>E-mail address</h6>
+                    </div>
+                    <p>@officeEmailAddress</p>
+                </div>
+        </div>
+    </div>
+</section>

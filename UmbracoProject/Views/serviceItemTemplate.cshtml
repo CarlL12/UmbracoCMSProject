@@ -1,0 +1,80 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Name ?? null;
+
+    var addSideBar = Model.Value<bool>("addSidebar");
+    var addInfoSection = Model.Value<bool>("addInfoSection");
+
+    var image = Model.Value<IPublishedContent>("thumbnailImage")?.Url();
+
+}
+
+@if(!string.IsNullOrEmpty(ViewBag.Title))
+{
+    @await Html.PartialAsync("partials/static/pagetitle.cshtml")
+}
+
+<section class="risk-management">
+    <div class="container">
+
+
+        <div class="box1">
+
+            @if(addSideBar) 
+            {
+                <div class="about-us">
+                    <div class="text">
+                        <h5>About us</h5>
+                        <img src="@image" alt="">
+                        <p>Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non </p>
+                    </div>
+                    <form class="how-can-we-help">
+                        <h5>How can we help you?</h5>
+                        <p>online support 24/7, we are here to help you</p>
+                        <div class="input">
+                            <input type="email" placeholder="E-mail address">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+
+                    </form>
+                </div>
+            }
+
+            <div class="info">
+                @Model.Value("pageContent")
+            </div>
+        </div>
+
+        @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+        {
+
+            <div class="question-form">
+                <div class="form">
+                    <h4>Have a question ?</h4>
+                    <div class="name">
+                        <input name="name" type="text" placeholder="Name">
+                        <input name="email" type="text" placeholder="Email">
+                    </div>
+                    <textarea name="message" placeholder="Question" rows="7"></textarea>
+                    <button type="submit" class="btn-dark">Submit</button>
+                    @if (ViewData["success"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            Message sent!
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+
+    </div>
+</section>
+
+@if(addInfoSection) 
+{
+    @await Html.PartialAsync("partials/static/infoSection.cshtml")
+}

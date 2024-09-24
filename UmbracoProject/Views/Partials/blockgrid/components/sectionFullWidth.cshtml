@@ -1,0 +1,37 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+
+    var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+        var sectionId = string.IsNullOrWhiteSpace(sectionTitle) 
+    ? "default-id" 
+    : sectionTitle.ToString().ToLower().Trim().Replace(" ", "-");
+
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "spacing-top" : "";
+    var spacingBottomClass = (Model!.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
+    var centerContentClass = (Model!.Content.Value<bool>("centerContentOnPage")) ? "center" : "";
+    var extraSpacingTopClass = (Model!.Content.Value<bool>("extraSpaceTop")) ? "extra-spacing-top" : "";
+    var extraSpacingBottomClass = (Model!.Content.Value<bool>("extraSpaceBottom")) ? "extra-spacing-bottom" : "";
+    var textOnTopOfImageClass = (Model!.Content.Value<bool>("textOnTopOfImage")) ? "text-on-top-image" : "";
+    var hideImageMobile = (Model!.Content.Value<bool>("hideImageInMobileView")) ? "hide-image-mobile" : "";
+
+
+    var sectionBackgroundColorLabel = Model?.Content?.Value<Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null ; 
+    var backgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
+
+    var sectionBackgroundImage = Model?.Content.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
+}
+
+<section id="@sectionId" class="@backgroundColorClass @spacingTopClass @spacingBottomClass @centerContentClass @extraSpacingBottomClass @extraSpacingTopClass">
+
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    
+      @if(!string.IsNullOrEmpty(sectionBackgroundImage))
+      {
+        <img class="background-image @textOnTopOfImageClass @hideImageMobile" src="@sectionBackgroundImage" alt="@sectionTitle background image">
+      }  
+         
+
+ </section>

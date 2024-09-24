@@ -1,0 +1,37 @@
+a {
+    font-size: 16px;
+    font-weight: 700;
+    color: $main;
+    text-decoration: none;
+
+    &:hover {
+
+        text-decoration: underline;
+        color: $subcolor3;
+    }
+}
+
+.ext-link {
+
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    padding: 15px;
+
+    @media (max-width: 576px) {
+        padding: 15px 30px;
+    }
+
+    i {
+        color: white;
+    }
+
+    &:hover {
+        background-color: $subcolor3;
+        transition: ease-in-out 0.5s background-color;
+    }
+}
+
+.active {
+
+    color: $subcolor3;
+}

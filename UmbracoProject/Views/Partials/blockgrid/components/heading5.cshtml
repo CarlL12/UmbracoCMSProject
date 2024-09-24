@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var headlineContent = Model?.Content.Value<string>("headlineContent");
+}
+
+@{
+    var headlineContent = Model?.Content.Value<string>("headlineContent");
+
+    var textColorLabel = Model?.Content?.Value<Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>("textColor")?.Label.ToLower() ?? null ; 
+    var textColorClass = (!string.IsNullOrEmpty(textColorLabel) && textColorLabel != "none") ? $"text-color-{textColorLabel}" : "";
+}
+
+@if(!string.IsNullOrEmpty(headlineContent))
+{
+    <h5 class="@textColorClass">
+        @headlineContent
+    </h5>
+}

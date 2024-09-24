@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ModularPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+    var addInfoSection = Model.Value<bool>("addInfoSection");
+}
+
+@if(!string.IsNullOrEmpty(ViewBag.Title))
+{
+    @await Html.PartialAsync("partials/static/pagetitle.cshtml")
+}
+
+
+@await Html.GetBlockGridHtmlAsync(Model.Layout)
+
+@if(addInfoSection) 
+{
+    @await Html.PartialAsync("partials/static/infoSection.cshtml")
+}

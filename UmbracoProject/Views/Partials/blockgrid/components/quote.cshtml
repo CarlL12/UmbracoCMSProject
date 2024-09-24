@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var quoteContent = Model?.Content.Value<string>("quoteContent");
+}
+
+@if(!string.IsNullOrEmpty(quoteContent))
+{
+    <p class="quote">
+        @quoteContent
+    </p>
+}

@@ -1,0 +1,32 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+
+@{
+
+    var slides = Model.Content.Value<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockListItem>>("profileSlides");
+
+    
+}
+
+<div class="advisors">
+
+    @foreach(var item in slides)
+    {
+        var profileImage = item?.Content.Value<IPublishedContent>("profileImage")?.Url();
+        var profileName = item?.Content.Value<string>("profileName");
+        var profileWorkTitle = item?.Content.Value<string>("profileWorkTitle");
+
+        <div class="profile">
+            <img src="@profileImage" alt="@profileName">
+            <div class="text">
+                <h5>@profileName</h5>
+                <p class="note1">@profileWorkTitle</p>
+            </div>
+
+        </div>
+    }
+
+
+</div>

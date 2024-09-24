@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var selectedImage = Model?.Content.Value<IPublishedContent>("selectedImage")?.Url() ?? null;
+    var imageDescription = Model?.Content.Value<string>("imageDescription") ?? "";
+    var centerImageClass = (Model!.Content.Value<bool>("centerImageInSection")) ? "center-image" : "";
+    var imageLeftClass = (Model!.Content.Value<bool>("imageLeft")) ? "image-left" : "";
+    var imageRightClass = (Model!.Content.Value<bool>("imageRight")) ? "image-right" : "";
+
+
+}
+
+@if(!string.IsNullOrEmpty(selectedImage))
+{
+    <img class="image-html @centerImageClass @imageLeftClass @imageRightClass" src="@selectedImage" alt="@imageDescription">
+}

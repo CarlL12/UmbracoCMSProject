@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+
+    var selection = Umbraco.Content(Guid.Parse("33050580-8e4f-471e-91fd-5002f19f685a"))
+    .ChildrenOfType("serviceItemTemplate")
+    .Where(x => x.IsVisible()).Take(6);
+
+
+    var labelText = Model?.Content.Value<string>("labelText") ?? "";
+    var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+}
+
+
+<section class="our-services">
+    <div class="container">
+        <div class="section-title">
+            <p class="label">@labelText</p>
+            <h2>@sectionTitle</h2>
+
+        </div>
+        <div class="services">
+
+            @foreach(var item in selection) {
+                var image = item.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                var preamble = item?.Value<string>("preamble") ?? "";
+
+                <a class="service" href="@item.Url()">
+                    <h5>@item.Name()</h5>
+                    <img src="@image" alt="@item.Name()">
+                    <p>@preamble </p>
+                </a>   
+
+            }
+        </div>
+
+    </div>
+
+</section>

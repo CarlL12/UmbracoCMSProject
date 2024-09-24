@@ -1,0 +1,85 @@
+.next-project {
+
+    background-color: #F7F7F7;
+
+    @media (max-width: 1200px) {
+
+        padding: 40px 0px;
+    }
+    .container {
+        display: flex;
+        gap: 250px;
+
+        .background-image {
+            
+            z-index: 0;
+            @media (max-width: 1200px) {
+
+                display: none;
+            }
+            position: relative;
+            .dots-rectangle {
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+            }
+    
+            .profile {
+                position: relative;
+                z-index: 2;
+                
+            }
+    
+    
+        }
+    
+        .text {
+            
+            display:flex;
+            flex-direction: column;
+            gap: 40px;
+            justify-content: center;
+
+            @media(max-width: 1200px) {
+
+                text-align: center;
+            }
+            h2 {
+    
+            }
+    
+    
+            .info-box {
+                
+                .textinfo {
+
+                    display: flex;
+                    @media(max-width: 1200px) {
+
+                        justify-content: center;
+                    }
+    
+
+                    .h6 {
+
+                    }
+
+                    i {
+
+                        padding-right: 5px;
+                        color: grey;
+                    }
+
+                }
+
+                p {
+
+                    padding-left: 20px;
+                }
+            }
+            
+        }
+
+    }
+
+}

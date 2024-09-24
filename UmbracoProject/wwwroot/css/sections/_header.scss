@@ -1,0 +1,94 @@
+header {
+
+    .background {
+
+        @media(max-width: 576px) {
+        }
+        background-color: $main;
+        .container {
+            .address-socials {
+                display:flex;
+                justify-content: space-between;
+
+                @media (max-width: 576px) {
+                    justify-content: center;
+                }
+                
+                .address {
+
+                    color: white;
+                    padding: 15px;
+
+                    
+                @media (max-width: 576px) {
+                    display:none;
+                }
+
+                }
+
+                .socials {
+                    display:flex;
+
+                    @media (max-width: 576px) {
+
+                        display:none;
+                    }
+
+                }
+    
+            }
+    
+        }
+    }
+
+    .navbar {
+
+        .container {
+
+            display:flex;
+            justify-content: space-between;
+
+            @media(max-width: 768px) {
+                display:flex;
+                justify-content: center;
+                flex-direction: column;
+            }   
+
+            .logo {
+            }
+
+            navbar {
+                display:flex;
+                gap: 60px;
+
+                @media(max-width: 576px) {
+                    gap: 10px;
+                    flex-direction: column;
+                    margin-top: 20px;
+                }
+
+                @media (max-width: 768px) {
+                    margin-top: 20px;
+                }
+                
+            }
+
+            .search-bar {
+                position: relative;
+
+                @media(max-width: 992px) {
+                    display:none;
+                }  
+
+
+                i {
+                    position: absolute;
+                    right: 6px;
+                    bottom: 18px;
+
+                }
+            }
+        }
+        
+    }
+}

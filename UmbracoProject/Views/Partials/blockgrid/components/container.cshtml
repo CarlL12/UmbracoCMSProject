@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var centerContentClass = (Model!.Content.Value<bool>("centerContentOnPage")) ? "center" : "";
+    var centerTextClass = (Model!.Content.Value<bool>("centerTextOnPage")) ? "center-text" : "";
+    var spacingTopClass = (Model!.Content.Value<bool>("addSpaceToTop")) ? "spacing-top" : "";
+    var spacingBottomClass = (Model!.Content.Value<bool>("addSpaceToBottom")) ? "spacing-bottom" : "";
+}
+
+<div class="container @centerTextClass @centerContentClass @spacingTopClass @spacingBottomClass">
+    
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+</div>

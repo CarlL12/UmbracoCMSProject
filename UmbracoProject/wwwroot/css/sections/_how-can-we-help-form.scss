@@ -1,0 +1,39 @@
+.how-can-we-help {
+    
+    background-color: $main;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    h5 {
+
+        color: $subcolor1;
+    }
+
+    p {
+
+        color: $subcolor1;
+    }
+
+    .input {
+        position: relative;
+        input {
+
+            padding-right: 70px;
+        }
+
+        i {
+            position: absolute;
+            right: 10%;
+            top: 30%;
+            color: grey;
+
+            @media (max-width: 992px ) {
+
+                right: 20%;
+            }
+
+        }
+    }
+
+}

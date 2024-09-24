@@ -1,0 +1,119 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+
+@{
+    Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+    var addSideBar = Model.Value<bool>("addSidebar");
+    var addInfoSection = Model.Value<bool>("addInfoSection");
+
+	var selection = Umbraco.Content(Guid.Parse("f85b267a-8604-4ae6-a89c-4bc958e0d991"))
+    .ChildrenOfType("projectItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var itemsPerPage = 6;
+
+    if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
+        currentPage = 1;
+
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.Skip((currentPage -1 ) * itemsPerPage).Take(itemsPerPage);
+}
+
+@if(!string.IsNullOrEmpty(ViewBag.Title))
+{
+    @await Html.PartialAsync("partials/static/pagetitle.cshtml")
+}
+
+<section class="our-projects">
+    <div class="container">
+        <div class="projects">
+
+            @foreach(var item in selection) {
+
+                var image = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                var preamble = item?.Value<string>("preamble") ?? "";
+                var dateCreated = item?.Value<string>("dateCreated") ?? "";
+                    
+
+                <div class="projectSmall">
+                    <img class="project-img" src="@image" alt="@item.Name()">
+                    <div class="text">
+                        <h6>@item.Name()</h6>
+                        <p class="date note1"><i class="fa-regular fa-calendar-days"></i>@dateCreated</p>
+                        <p class="info">@preamble</p>
+                        <a href="@item.Url()">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+        @if(addSideBar) 
+        {
+            <div class="tags-support">
+                <div class="tags">
+                    <h6>Tags</h6>
+                    <div class="tag-box">
+                        <a class="tag">Report</a>
+                        <a class="tag">Busines plans</a>
+                        <a class="tag">Insights</a>
+                        <a class="tag">Business</a>
+                        <a class="tag">App</a>
+                        <a class="tag">Project</a>
+                        <a class="tag">Finance</a>
+                        <a class="tag">Pricing</a>
+                    </div>
+                </div>
+
+                <form class="how-can-we-help">
+                    <h5>How can we help you?</h5>
+                    <p>online support 24/7, we are here to help you</p>
+                    <div class="input">
+                        <input type="email" placeholder="E-mail address">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+
+                </form>
+            </div>
+
+        }
+
+    </div>
+
+            <div class="pagination">
+
+            @if(currentPage > 1)
+            {
+                <a href="?page=@(currentPage -1)"> PREV</a>
+            }
+            else
+            {
+                <span class="change inactive">PREV </span>
+            }
+            <ul class="pages">
+                @for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++)
+                {
+                    <li class="@((i == currentPage) ? "number active" : "number")">
+                        <a href="?page=@i">@i </a>
+                     </li>
+                }
+             </ul>
+
+             @if(currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage))
+             {
+                <a class="change" href="?page=@(currentPage + 1)">NEXT </a>
+             }
+             else
+             {
+                <span class="change inactive">NEXT </span>
+             }
+        </div>
+</section>
+
+@if(addInfoSection) 
+{
+    @await Html.PartialAsync("partials/static/infoSection.cshtml")
+}

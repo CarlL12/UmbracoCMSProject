@@ -1,0 +1,43 @@
+﻿
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("f85b267a-8604-4ae6-a89c-4bc958e0d991"))
+    .ChildrenOfType("projectItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var labelText = Model?.Content.Value<string>("labelText") ?? "";
+    var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
+}
+
+
+
+
+<section class="our-projects-home">
+    <div class="container">
+        <p class="label">@labelText</p>
+        <h2>@sectionTitle</h2>
+    </div>
+
+    <div class="projects">
+
+        @foreach(var item in selection) 
+        {
+
+            var image = item?.Value<IPublishedContent>("thumbnailImageBig")?.Url() ?? "";
+            var category = item?.Value<string>("category") ?? "";
+
+            <a class="project-home" href="@item.Url()">
+                <img src="@image" alt="@item.Name()">
+                <div class="text">
+                    <p>@item.Name()</p>
+                    <span>@category</span>
+                </div>
+            </a>
+        }
+
+    </div>
+</section>

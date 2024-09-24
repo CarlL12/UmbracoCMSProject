@@ -1,0 +1,29 @@
+.btn-dark {
+    background-color: $main;
+    color: $subcolor1;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 50px;
+
+
+    &:hover {
+
+        background-color:  $note1;
+        transition: ease-in-out 0.3s background-color;
+    }
+}
+
+.btn-light {
+    background-color: $subcolor1;
+    color: $main;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 35px;
+
+
+    &:hover {
+
+        background-color:  $subcolor3;
+        transition: ease-in-out 0.3s background-color;
+    }
+}

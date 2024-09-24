@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var noteContent = Model?.Content.Value<string>("noteContent");
+}
+
+@if(!string.IsNullOrEmpty(noteContent))
+{
+    <p class="note1">
+        @noteContent
+    </p>
+}

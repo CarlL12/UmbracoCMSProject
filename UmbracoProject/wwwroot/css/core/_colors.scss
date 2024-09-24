@@ -1,0 +1,71 @@
+$main: #4F5955; 
+$subcolor1: #F2EDDC;
+$subcolor3: #D9C3A9;
+$note1: #9C9EA6;
+$bodytext: #535656;
+
+.text-color-main {
+    color: $main;
+}
+
+.text-color-sub-color-1 {
+    color: $subcolor1;
+}
+
+.text-color-sub-color-3 {
+    color: $subcolor3;
+}
+
+.text-color-grey {
+    color: #999999;
+}
+
+.text-color-dark {
+    color: #171717;
+}
+
+.text-color-light-grey {
+    color: #F7F7F7;
+}
+
+.text-color-light {
+
+    color:#FFFFFF;
+}
+
+
+
+
+
+.bg-main {
+
+    background-color: $main;
+    z-index: -3;
+}
+
+.bg-sub-color-1 {
+
+    background-color: $subcolor1;
+}
+
+.bg-sub-color-3 {
+    background-color: $subcolor3;
+}
+
+.bg-grey {
+
+    background-color: #999999;
+}
+
+.bg-dark {
+    background-color: #171717;
+}
+
+.bg-light-grey {
+    background-color: #F7F7F7;
+}
+
+.bg-none {
+    background-color: transparent;
+}
+

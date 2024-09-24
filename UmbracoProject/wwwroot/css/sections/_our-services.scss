@@ -1,0 +1,56 @@
+.our-services {
+    background-color: #F7F7F7;
+    padding-top: 50px;
+    padding-bottom: 100px;
+
+    .container {
+
+        .section-title {
+
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .services {
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+
+            @media (max-width: 1200px) {
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media (max-width: 768px) {
+
+                grid-template-columns: 1fr;
+            }
+            .service {
+
+                background-color: white;
+
+                &:hover {
+
+                    cursor: pointer;
+                    background-color: $subcolor1;
+                    transition: ease-in 0.35s background-color;
+                }
+
+                h5 {
+
+                    padding: 20px 30px;
+                }
+
+                img {
+
+                    width: 100%;
+                }
+
+                p {
+                    padding: 20px 30px;
+                }
+
+            }
+        }
+    }
+}

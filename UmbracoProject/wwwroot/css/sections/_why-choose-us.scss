@@ -1,0 +1,59 @@
+.why-choose-us {
+
+    padding-top: 150px;
+    position: relative;
+
+
+    @media (max-width: 992px) {
+
+        padding-bottom: 50px;
+    }
+    .team {
+
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+        width: 70%;
+        padding-top: 50px;
+
+        @media(max-width: 992px) {
+
+            display:none;
+        }
+    }
+
+    .dotmap-1 {
+
+        position: absolute;
+        z-index: -1;
+        width: 70%;
+        top: 0;
+        left: 15%;
+        top: 18%;
+    }
+    @media (max-width: 992px) {
+
+        padding-top: 50px;
+        max-height: 450px
+    }
+    .container {
+        
+
+
+        text-align: center;
+        h2 {
+
+        }
+
+         p{
+
+            padding: 40px 0px;
+         }
+    }
+
+    .background-2 {
+
+
+
+    }
+}

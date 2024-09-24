@@ -1,0 +1,46 @@
+.project {
+    position: relative;
+    width: 100%;
+    display: block;
+
+    &:hover {
+        cursor: pointer;
+
+        .text {
+            background-color: $main;
+            padding: 30px;
+            transition: background-color 0.3s ease;
+
+            p {
+                color: $subcolor1;
+                transition: color 0.3s ease;
+            }
+        }
+    }
+
+    img {
+        z-index: -1;
+        width: 100%;
+    }
+
+    .text {
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px 0px;
+        background-color: rgba(70, 62, 62, 0.363);
+
+        p {
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+        }
+
+        span {
+            font-size: 14px;
+            color: white;
+            font-weight: 300;
+        }
+    }
+}
